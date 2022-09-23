@@ -1,0 +1,26 @@
+[flake8]
+max-line-length=99
+application-import-names=apps,config,routing
+extend-exclude=
+    manage.py,
+    */static/CACHE/*,
+    .venv,
+    venv,
+ignore=
+    ANN101,  ; flake8-annotations
+    ANN102,  ; flake8-annotations
+    BLK100,  ; flake8-black
+    S101,
+    S106,
+    S105,
+    VNE001,
+    VNE002,
+    VNE003,
+    A001,
+    A003,
+    C812,  ; missing trailing comma
+    W503,  ; line break before binary operator
+    JS101  ; Multi-line container not broken after opening character
+per-file-ignores =
+    __init__.py:F401,
+inline-quotes="
