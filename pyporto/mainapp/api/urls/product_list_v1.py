@@ -9,4 +9,3 @@ from mainapp.api.views.product_list_view import ProductListView
 urlpatterns = [
     path("product-list/", ProductListView.as_view()),
 ]
-print(2, urlpatterns)
