@@ -275,7 +275,7 @@ Every Container consists of a number of Components, in **Porto** one Component c
 
 > Your feedback is important.
 
-For feedbacks, questions, or suggestions? We are on [**telegram**](t.me/discoroveryx).
+For feedbacks, questions, or suggestions? We are on [**telegram**](https://t.me/discoroveryx).
 
 
 <a name="License"></a>
