@@ -2,8 +2,8 @@ from typing import Any, List
 
 from core.parents.repositories.repository import Repository
 
-from mainapp.entities.product_entity import ProductEntity
-from mainapp.models.product import Product
+from containers.mainapp.entities.product_entity import ProductEntity
+from containers.mainapp.models.product import Product
 
 
 class ProductRepository(Repository):
@@ -20,7 +20,7 @@ class ProductRepository(Repository):
 
     def _get_row(self, row: dict) -> ProductEntity:
         return ProductEntity(
-            product_id=row["pk"],
-            name=row["name"],
-            price=row["price"],
+            product_id=row['pk'],
+            name=row['name'],
+            price=row['price'],
         )

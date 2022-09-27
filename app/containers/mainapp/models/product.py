@@ -12,8 +12,8 @@ class Product(models.Model):
     @staticmethod
     def _get_all_fake_fixtures():
         return [
-            {"pk": 1, "name": "Product 1", "price": 100.00},
-            {"pk": 2, "name": "Product 2", "price": 200.00},
+            {'pk': 1, 'name': 'Product 1', 'price': 100.00},
+            {'pk': 2, 'name': 'Product 2', 'price': 200.00},
         ]
 
     class Meta:

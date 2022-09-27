@@ -3,6 +3,6 @@ from django.contrib import admin
 from django.urls import path
 
 urlpatterns = [
-    path("", include("mainapp.api.urls")),
-    path("admin/", admin.site.urls),
+    path('', include('containers.mainapp.api.urls')),
+    path('admin/', admin.site.urls),
 ]

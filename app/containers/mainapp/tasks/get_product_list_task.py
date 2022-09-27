@@ -2,8 +2,8 @@ from typing import List
 
 from core.parents.tasks.task import Task
 
-from mainapp.entities.product_entity import ProductEntity
-from mainapp.repositories.product_repository import ProductRepository
+from containers.mainapp.entities.product_entity import ProductEntity
+from containers.mainapp.repositories.product_repository import ProductRepository
 
 
 class GetProductListTask(Task):

@@ -1,9 +1,9 @@
 from rest_framework.views import APIView
 
-from mainapp.actions.get_product_list_action import GetProductListAction
-from mainapp.dto.product_list_dto import ProductListDTO
-from mainapp.paginations import ProductListPagination
-from mainapp.serializers import ProductListSerializer
+from containers.mainapp.actions.get_product_list_action import GetProductListAction
+from containers.mainapp.dto.product_list_dto import ProductListDTO
+from containers.mainapp.paginations import ProductListPagination
+from containers.mainapp.serializers import ProductListSerializer
 
 
 class ProductListView(APIView):
