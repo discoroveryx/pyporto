@@ -1,4 +1,4 @@
-# PyPorto (Software Architectural Pattern)
+# PyPorto is a design for building scalable and testable applications with Django.
 
 ## Welcome to PyPorto
 
