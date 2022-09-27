@@ -234,38 +234,35 @@ containers
 # Components
 
 
-Every Container consists of a number of Components, in **Porto** one Component can be buit from these types of conmponents:
+Every Container consists of a number of Components, in **Porto** one Component can be built from these types of components:
 `Main Components` and `Framework Components`.
 
 </br>
 
 <a id="Main-Components"></a>
-## Main-components
+## Main Components
 
-
-#### Common entities
-`constants/` - holds all constants.\
-`dto/` - holds all Data Transfer Objects (it does not include in Porto, it is new for PyPorto).\
-`types/` - holds all types.\
-`tasks/` - holds all tasks.\
-`values/` - holds all values.\
 `actions/` - holds all actions.\
 `subactions/` - holds all subactions.\
+`tasks/` - holds all tasks.\
+`repositories/` - holds all repositories.
+`dto/` - holds all Data Transfer Objects (it does not include in Porto, it is new for PyPorto).\
+`types/` - holds all types.\
+`values/` - holds all values.\
 `entities/` - holds all entities.\
-`repositories/` - holds all repositories.\
+`constants/` - holds all constants.
 
 </br>
 
 <a id="Framework-Components"></a>
-## Framework-components
+## Framework Components
 
-#### Django Rest Framework entities
-`api (urls, views)/` - holds all constants.\
+`api (urls, views)/` - holds all urls and views.\
 `migrations/` - holds all migrations.\
 `models/` - holds all models.\
 `paginations/` - holds all paginations.\
 `serializers/` - holds all serializers.\
-`tests/` - holds all tests.\
+`tests/` - holds all tests.
 
 
 
