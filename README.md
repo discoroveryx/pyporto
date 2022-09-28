@@ -33,7 +33,7 @@ Usually in Django or DRF we have business logic in next files
 `models/my_model.py`\
 `services/my_business_logic_n1.py`
 
-it is usefull for Minimum Viable Product (MVP) projects, but if you are going to split your project into a microservice architecture (in the future), you will have to deal with wild connection in your business logic, also you can't extract the business logic layer from the framework layer.
+It is usefull for Minimum Viable Product (MVP) projects, but if you are going to split your project into a microservice architecture (in the future), you will have to deal with wild connection in your business logic, also you can't extract the business logic layer from the framework layer.
 
 Сomes to the help **Porto** and **PyPorto**
 
@@ -245,7 +245,7 @@ Every Container consists of a number of Components, in **Porto** one Component c
 `actions/` - holds all actions.\
 `subactions/` - holds all subactions.\
 `tasks/` - holds all tasks.\
-`repositories/` - holds all repositories.
+`repositories/` - holds all repositories.\
 `dto/` - holds all Data Transfer Objects (it does not include in Porto, it is new for PyPorto).\
 `types/` - holds all types.\
 `values/` - holds all values.\
