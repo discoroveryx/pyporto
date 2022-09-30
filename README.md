@@ -5,11 +5,13 @@
 
 - [Introduction](#Introduction)
 - [Getting Started](#Getting-Started)
-	- [Basic Project Structure](#Project-Structure)
-	- [Basic Containers Structure](#Containers-Structure)
-- [Components](#Components)
-	- [Main Components](#Main-Components)
-	- [Framework components](#Framework-Components)
+    - [Basic Project Structure](#Project-Structure)
+    - [Basic Containers Structure](#Containers-Structure)
+        - [Components](#Components)
+            - [Main Components](#Main-Components)
+            - [Framework components](#Framework-Components)
+        - [Components Details](#Components-Details)
+- [Project scheme](#Project-scheme)
 - [Feedback & Questions](#Feedback)
 
 
@@ -49,7 +51,7 @@ It is usefull for Minimum Viable Product (MVP) projects, but if you are going to
 `dj/` - holds all configurations for your Django project.\
 `core/` - holds the infrastructure code (your shared code between all Containers).\
 `containers/` - holds all your application and business logic code.\
-`manage.py`
+`manage.py` - command-line utility for administrative tasks.
 
 These layers `core` and `containers` can be created anywhere inside Django framework.
 
@@ -59,9 +61,149 @@ These layers `core` and `containers` can be created anywhere inside Django frame
 <a id="Containers-Structure"></a>
 ## Basic Containers Structure
 
+</br>
+
+
+<a id="Components"></a>
+## Components
+
+
+Every Container consists of a number of Components, in **Porto** one Component can be built from these types of components:
+`Main Components` and `Framework Components`.
+
+</br>
+
+<a id="Main-Components"></a>
+## Main Components
+
+`actions/` - holds all actions.\
+`subactions/` - holds all subactions.\
+`tasks/` - holds all tasks.\
+`repositories/` - holds all repositories.\
+`dto/` - holds all Data Transfer Objects (it does not include in Porto, it is new for PyPorto).\
+`types/` - holds all types.\
+`values/` - holds all values.\
+`entities/` - holds all entities.\
+`constants/` - holds all constants.
+
+</br>
+
+<a id="Framework-Components"></a>
+## Framework Components
+
+`api (urls, views)/` - holds all urls and views.\
+`migrations/` - holds all migrations.\
+`models/` - holds all models.\
+`paginations/` - holds all paginations.\
+`serializers/` - holds all serializers.\
+`tests/` - holds all tests.
+
+
+
+*You can make new components, if you need it.*
+
+</br>
+
+<a id="Components-Details"></a>
+### Main Components Definitions & Principles
+
+> Click on the arrows below to read about each component.
+
+
+<a id="DTO"></a>
+<Details>
+<Summary>Data Transfer Object (DTO)</Summary>
+<br>
+
+Data Transfer Object (DTO)
+
+DTO is used for data transport between layers.
+DTO is an immutable object, it does not have ID's, it does not have any logic.
+
+Controller/View -> DTO -> Action
+
+#### Example:
+Usually we have something that in DRF view:
+```python
+from mainapp.services.my_serivice import get_all_products
+
+def get(self, request, *args, **kwargs):
+    product_list = get_all_products(
+        user_id=request.user.id,
+        filter_by={'price__gte': 20},
+        sort_by='id',
+        ...  # More other args.
+    )
+
+    serializer = ProductListSerializer(product_list, many=True)
+
+    return Response(serializer.data)
+```
+
+You need to collect all arguments with `DTO` and send them as one argument to the business logic:
+```python
+from dataclasses import dataclass
+from core.parents.dto.dto import DTO
+
+@dataclass(init=True, eq=True, frozen=True)
+class GetProductListDTO(DTO):
+    user_id: int
+    filter_by: dict
+    sort_by: str
+    ...  # More other fields.
+
+params = GetProductListDTO(
+    user_id=request.user.id,
+    filter_by={'price__gte': 20},
+    sort_by='id',
+    ...
+)
+
+product_list = get_all_products(params)
+
+serializer = ProductListSerializer(product_list, many=True)
+
+return Response(serializer.data)
+```
+
+Bad idea to pass all `request` to `DTO` instead of to pass `request.user.id` or `request.user.is_authenticated` , why? because if you want to debug that part of business logic in console (for example: django shell), you have to buld all request:
+
+Bad idea:
+```python
+def get(self, request, *args, **kwargs):
+    # WRONG! You pass all HttpRequest objects, lika that [method, content_type, GET, POST, ...].
+    # and you will have to build it during debugging or testing it.
+    params = GetProductListDTO(
+        request=request,  
+    )
+
+    ...
+```
+
+Good idea:
+```python
+def get(self, request, *args, **kwargs):
+    # It's even easy to test and debug outside of the framework environment, because you have only int and bool types.
+    params = GetProductListDTO(
+        user_id=request.user.id,  # You pass only int.
+        user_is_authenticated=request.user.is_authenticated  # You pass only bool.
+        ...
+    )
+
+    ...
+```
+
+***
+
+</Details>
+
+
+<a id="Project-scheme"></a>
+# Project-scheme
+
 
 ```bash
-containers
+app
 ├── dj
 │   ├── __init__.py
 │   ├── settings.py
@@ -226,49 +368,10 @@ containers
 └──manage.py
 ```
 
-
 </br>
 
-
-<a id="Components"></a>
-# Components
-
-
-Every Container consists of a number of Components, in **Porto** one Component can be built from these types of components:
-`Main Components` and `Framework Components`.
-
-</br>
-
-<a id="Main-Components"></a>
-## Main Components
-
-`actions/` - holds all actions.\
-`subactions/` - holds all subactions.\
-`tasks/` - holds all tasks.\
-`repositories/` - holds all repositories.\
-`dto/` - holds all Data Transfer Objects (it does not include in Porto, it is new for PyPorto).\
-`types/` - holds all types.\
-`values/` - holds all values.\
-`entities/` - holds all entities.\
-`constants/` - holds all constants.
-
-</br>
-
-<a id="Framework-Components"></a>
-## Framework Components
-
-`api (urls, views)/` - holds all urls and views.\
-`migrations/` - holds all migrations.\
-`models/` - holds all models.\
-`paginations/` - holds all paginations.\
-`serializers/` - holds all serializers.\
-`tests/` - holds all tests.
-
-
-
-*You can make new components, if you need it.*
-
-</br>
+<a id="Components-Detail"></a>
+# Main Components
 
 <a id="Feedback"></a>
 # Get in Touch
