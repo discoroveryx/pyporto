@@ -13,7 +13,7 @@ class ProductListView(APIView):
 
     def get(self, request, *args, **kwargs):
         params = ProductListDTO(
-            user_is_authenticated=request.user.id,
+            user_is_authenticated=request.user.is_authenticated,
         )
 
         product_list = GetProductListAction().run(params)
