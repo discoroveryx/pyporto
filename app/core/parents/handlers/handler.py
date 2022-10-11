@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class Task(ABC):
+class Handler(ABC):
 
     @abstractmethod
     def run(self):
