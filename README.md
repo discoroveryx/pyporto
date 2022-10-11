@@ -53,7 +53,7 @@ See flake8 plugin [flake8-pyporto](https://github.com/discoroveryx/flake8-pyport
 `dj/` - holds all configurations for your Django project.\
 `core/` - holds the infrastructure code (your shared code between all Containers).\
 `containers/` - holds all your application and business logic code.\
-`manage.py` - command-line utility for administrative tasks.
+`manage.py` - command-line utility for django.
 
 These layers `core` and `containers` can be created anywhere inside Django framework.
 
@@ -80,13 +80,20 @@ Every Container consists of a number of Components, in **Porto** one Component c
 
 `actions/` - holds all actions.\
 `subactions/` - holds all subactions.\
-`tasks/` - holds all tasks.\
+~~`tasks/`~~  `handlers/` - holds all handlers. [Why handlers is better than tasks?](#handlesr-instead-of-tasks) \
 `repositories/` - holds all repositories.\
 `dto/` - holds all Data Transfer Objects (it does not include in Porto, it is new for PyPorto).\
 `types/` - holds all types.\
 `values/` - holds all values.\
 `entities/` - holds all entities.\
 `constants/` - holds all constants.
+
+</br>
+
+<a id="handlesr-instead-of-tasks"></a>
+## Why handlers is better than task?
+
+According to Porto every small part of the logic should name a `task`, but usually Django project has ```Celery Task Queue```, see more about: [Celery](https://github.com/celery/celery), so we need to avoid naming conflicts.
 
 </br>
 
@@ -235,9 +242,9 @@ app
 │   │   ├── repositories
 │   │   │   ├── __init__.py
 │   │   │   └── repository.py
-│   │   ├── tasks
+│   │   ├── handlers
 │   │   │   ├── __init__.py
-│   │   │   └── task.py
+│   │   │   └── handler.py
 │   │   ├── values
 │   │   │   ├── __init__.py
 │   │   │   └── value.py
@@ -280,10 +287,10 @@ app
 │   │   ├── serializers
 │   │   │   ├── __init__.py
 │   │   │   └── product_list_serializer.py
-│   │   ├── tasks
+│   │   ├── handlers
 │   │   │   ├── __init__.py
-│   │   │   ├── get_product_list_task.py
-│   │   │   └── retrieve_product_task.py
+│   │   │   ├── get_product_list_handler.py
+│   │   │   └── retrieve_product_handler.py
 │   │   ├── tests
 │   │   │   ├── __init__.py
 │   │   │   └── test_get_product_list.py
@@ -316,7 +323,7 @@ app
 │   │   │   └── ...
 │   │   ├── entities
 │   │   │   └── ...
-│   │   ├── tasks
+│   │   ├── handlers
 │   │   │   ├── __init__.py
 │   │   │   └── ...
 │   │   ├── tests
@@ -336,7 +343,7 @@ app
 │   │   │   ├── actions
 │   │   │   │   ├── __init__.py
 │   │   │   │   └── ...
-│   │   │   ├── tasks
+│   │   │   ├── handlers
 │   │   │   │   ├── __init__.py
 │   │   │   │   └── ...
 │   │   │   ├── tests
@@ -355,7 +362,7 @@ app
 │   │   │   ├── actions
 │   │   │   │   ├── __init__.py
 │   │   │   │   └── ...
-│   │   │   ├── tasks
+│   │   │   ├── handlers
 │   │   │   │   ├── __init__.py
 │   │   │   │   └── ...
 │   │   │   ├── tests
