@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from core.parents.dto.dto import DTO
+from core.parents.dto import DTO
 
 
 @dataclass(init=True, eq=True, frozen=True)

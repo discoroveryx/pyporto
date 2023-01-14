@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from core.parents.entities.entity import Entity
+from core.parents.entities import Entity
 
 from containers.mainapp.types.product_id_type import ProductId
 

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from core.parents.values.value import Value
+from core.parents.values import Value
 
 
 @dataclass(init=True, eq=True, frozen=True)
