@@ -12,14 +12,14 @@ class GetProductListTests(APITestCase):
         Get product list.
         """
 
-        url = '/product-list/'
-        response = self.client.get(url, format='json')
+        url = "/product-list/"
+        response = self.client.get(url, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['count'], 2)
+        self.assertEqual(response.data["count"], 2)
 
         serializer = ProductListSerializer(
             ProductRepository().fetch_all_products_with_sorting_by(SORT_BY_DEFAULT),
             many=True,
         )
 
-        self.assertEqual(response.data['results'], serializer.data)
+        self.assertEqual(response.data["results"], serializer.data)

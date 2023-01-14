@@ -20,7 +20,7 @@ class ProductRepository(Repository):
 
     def _get_row(self, row: dict) -> ProductEntity:
         return ProductEntity(
-            product_id=row['pk'],
-            name=row['name'],
-            price=row['price'],
+            product_id=row["pk"],
+            name=row["name"],
+            price=row["price"],
         )
