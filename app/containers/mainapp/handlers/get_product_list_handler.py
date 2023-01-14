@@ -1,13 +1,13 @@
-from typing import List
+from typing import List, Type
 
-from core.parents.handlers.handler import Handler
+from core.parents.handlers import Handler
 
 from containers.mainapp.entities.product_entity import ProductEntity
 from containers.mainapp.repositories.product_repository import ProductRepository
 
 
 class GetProductListHandler(Handler):
-    def __init__(self, repository: ProductRepository) -> None:
+    def __init__(self, repository: Type[ProductRepository]) -> None:
         self.repository: ProductRepository = repository()
 
     def run(self, sort_by: str) -> List[ProductEntity]:
