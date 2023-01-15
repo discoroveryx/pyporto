@@ -1,9 +1,12 @@
 from django.db import models
 
+from .category import Category
+
 
 class Product(models.Model):
     name = models.CharField(max_length=128)
     price = models.FloatField()
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
 
     @staticmethod
     def objects_all_order_by(*args, **kwargs):
@@ -17,5 +20,4 @@ class Product(models.Model):
         ]
 
     class Meta:
-        abstract = True
         db_table = "product"
