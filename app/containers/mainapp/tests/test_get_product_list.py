@@ -6,7 +6,7 @@ from containers.mainapp.repositories.product_repository import ProductRepository
 from containers.mainapp.serializers import ProductListSerializer
 
 
-class GetProductListTests(APITestCase):
+class GetProductListTestCase(APITestCase):
     def test_get_product_list(self):
         """
         Get product list.
