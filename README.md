@@ -175,7 +175,7 @@ serializer = ProductListSerializer(product_list, many=True)
 return Response(serializer.data)
 ```
 
-Bad idea to pass all `request` to `DTO` instead of to pass `request.user.id` or `request.user.is_authenticated` , why? because if you want to debug that part of business logic in console (for example: django shell), you have to buld all request:
+Bad idea to pass all `request` to `DTO` instead of to pass `request.user.id` or `request.user.is_authenticated` , why? because if you want to debug that part of business logic in console (for example: django shell), you have to build all request:
 
 Bad idea:
 ```python
